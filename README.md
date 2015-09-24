@@ -2,9 +2,8 @@
 
 This library is a **Graphout** module. It's not intended to be used alone.
 
-The module adds support for outputing **Graphout** queries to Zabbix server using
-[`zabbix_sender`](https://www.npmjs.com/package/node-zabbix-sender) (trapper) protocol.
-
+The module adds support for outputing **Graphout** queries to Cloudwatch.
+Where later can be used to generate Cloudwatch alerts for Auto-Scaling use.
 
 ### Configuration params
 
@@ -16,34 +15,37 @@ here are the available params:
     "output": "graphout-output-zabbix",
     "params":
     {
-        "host": "zabbix.example.com",
-        "port": 10051,
-        "target": "monitor",
-        "namespace": "graphout"
+        "accessKeyId": "",
+        "secretAccessKey": "",
+        "region": "us-east-1",
+        "namespace": "Graphout",
+        "dot_notation": true
     }
 }
-
 ```
 
 **`output`**
 
-set this to `graphout-output-zabbix`
+Set this to `graphout-output-cloudwatch`
 
-**`params.host`**
+**`params.accessKeyId`**
 
-set this to the zabbix server host/ip
+AWS access key, mey be omitted if runs from EC2 instance with IAM role
 
-**`params.port`**
+**`params.secretAccessKey`**
 
-set this to the zabbix server port, usually `10051`
+AWS secret access key, can be omitted if running from EC2 instance with IAM role.
 
-**`params.target`**
+**`params.region`**
 
-set this to target monitored host in zabbix server, all items will go under this host.
-the host must exist in zabbix server.
+AWS region, the only **required** parameter.
 
 **`params.namespace`**
 
-this is just a prefix of the item key. for example, if you have query named `http_latency`,
-and `namespace` is `graphout`, the final item's key name will be `graphout.http_latency` and
-this is the key must exist in zabbix server under `target` host.
+CloudWatch global namespace, **default** is `Graphout`
+
+**`params.dot_notation`**
+
+When enabled, the namespace will be gerenated based on Graphout query key name (in addition to the global namespace),
+which is splitted by dots. The string after the last dot will be used as a metric name.
+If disabled, entire query key name will be used as the metric name. **Default** is `true`.
