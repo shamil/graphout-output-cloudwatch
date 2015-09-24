@@ -30,11 +30,13 @@ Set this to `graphout-output-cloudwatch`
 
 **`params.accessKeyId`**
 
-AWS access key, mey be omitted if runs from EC2 instance with IAM role
+AWS access key, **required**.
+Set to `""` (empty string) if Graphout runs from EC2 instance with IAM role
 
 **`params.secretAccessKey`**
 
-AWS secret access key, can be omitted if running from EC2 instance with IAM role.
+AWS secret access key, **required**.
+Set to `""` (empty string) if Graphout runs from EC2 instance with IAM role
 
 **`params.region`**
 
