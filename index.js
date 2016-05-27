@@ -1,7 +1,7 @@
 /**
  * cloudwatch output for graphout
  */
-AWS = require('aws-sdk');
+var AWS = require('aws-sdk');
 
 // constructor
 var CloudWatchOutput = module.exports = function(events, log, params) {
