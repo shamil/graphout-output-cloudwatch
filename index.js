@@ -41,7 +41,8 @@ var CloudWatchOutput = module.exports = function(events, log, params) {
             Namespace: namespace,
             MetricData: [{
                 MetricName: metric,
-                Value: result
+                Value: result,
+                Dimensions: params.dimensions || []
             }]
         }
 
@@ -58,7 +59,7 @@ var CloudWatchOutput = module.exports = function(events, log, params) {
 };
 
 function validateParams(params) {
-    ['accessKeyId', 'secretAccessKey', 'region', 'namespace', 'dot_notation'].forEach(function(param) {
+    ['accessKeyId', 'secretAccessKey', 'region', 'namespace', 'dot_notation', 'dimensions'].forEach(function(param) {
         switch (param) {
             case 'namespace':
                 params[param] = params[param] ? params[param] + '.' : 'Graphout.';
@@ -66,6 +67,12 @@ function validateParams(params) {
 
             case 'dot_notation':
                 params[param] = (typeof params[param] !== 'undefined') ? params[param] : true;
+                break;
+
+            case 'dimensions':
+                if (typeof params[param] !== 'undefined' && !Array.isArray(params[param])) {
+                    throw new Error('param ' + param + ' must be of Array<map> type');
+                }
                 break;
 
             default:

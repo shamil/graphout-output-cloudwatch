@@ -12,14 +12,17 @@ here are the available params:
 
 ```json
 {
-    "output": "graphout-output-zabbix",
+    "output": "graphout-output-cloudwatch",
     "params":
     {
         "accessKeyId": "",
         "secretAccessKey": "",
         "region": "us-east-1",
         "namespace": "Graphout",
-        "dot_notation": true
+        "dot_notation": true,
+        "dimensions": [
+            {"Name": "env", "Value": "production"}
+        ]
     }
 }
 ```
@@ -51,3 +54,7 @@ CloudWatch global namespace, **default** is `Graphout`
 When enabled, the namespace will be gerenated based on Graphout query key name (in addition to the global namespace),
 which is splitted by dots. The string after the last dot will be used as a metric name.
 If disabled, entire query key name will be used as the metric name. **Default** is `true`.
+
+**`params.dimensions`**
+
+Array of `Name`/`Value` which will be used for metrics dimensions.
