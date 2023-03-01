@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/shamil/graphout-output-clouwdwatch#readme",
   "dependencies": {
-    "aws-sdk": "~2.1306.0"
+    "aws-sdk": "~2.1325.0"
   }
 }
