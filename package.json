@@ -1,6 +1,6 @@
 {
   "name": "graphout-output-cloudwatch",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A cloudwatch output module for graphout (github.com/shamil/graphout).",
   "main": "index.js",
   "scripts": {
