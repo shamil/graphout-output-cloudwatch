@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/shamil/graphout-output-cloudwatch#readme",
   "dependencies": {
-    "aws-sdk": "~2.1569.0"
+    "aws-sdk": "~2.1589.0"
   }
 }
